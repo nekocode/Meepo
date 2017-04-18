@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context="cn.nekocode.meepo.sample.MainActivity"
+    >
+
+    <Button
+        android:id="@+id/button_a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Goto AActivity"
+        />
+
+    <Button
+        android:id="@+id/button_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Goto BActivity"
+        />
+
+    <Button
+        android:id="@+id/button_module"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Goto TestModule"
+        />
+
+    <Button
+        android:id="@+id/button_module2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Goto TestModule2"
+        />
+
+</android.support.v7.widget.LinearLayoutCompat>

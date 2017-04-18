@@ -1,0 +1,34 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion COMPILE_SDK_VERSION.toInteger()
+    buildToolsVersion BUILD_TOOLS_VERSION
+
+    defaultConfig {
+        applicationId "cn.nekocode.meepo.sample"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        def SCHEME = "meepo_sample"
+        buildConfigField "String", "SCHEME", "\"$SCHEME\""
+        manifestPlaceholders = [
+                APPLICATION_ID: applicationId,
+                SCHEME: "$SCHEME",
+        ]
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':meepo')
+    compile "com.android.support:appcompat-v7:$SUPPORT_LIBS_VERSION"
+    compile "com.android.support.constraint:constraint-layout:1.0.0-beta4"
+}
