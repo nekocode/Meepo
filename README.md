@@ -84,7 +84,7 @@ Meepo supports below router annonations currently:
 | `@RequestCode` | Request code for `startActivityForResult()` |
 
 
-### Custom Parser and GotoAdapter
+## Custom Parser and GotoAdapter
 
 You can create custom Parser and GotoAdapter for Meepo. See the **[sample](sample/src/main/java/cn/nekocode/meepo/sample/custom)** for more detail. It means that you have the ability to make router for anything.
 
