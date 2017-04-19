@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import cn.nekocode.meepo.GotoMethod;
+import cn.nekocode.meepo.annonation.RequestCode;
 import cn.nekocode.meepo.config.Config;
 import cn.nekocode.meepo.MeepoUtils;
 import cn.nekocode.meepo.annonation.Bundle;
@@ -117,6 +118,9 @@ public class DefaultParser implements Parser {
 
                 } else if (annotation instanceof QueryMap) {
                     goTo.addQueryMapPositions(i);
+
+                } else if (annotation instanceof RequestCode) {
+                    goTo.setRequestCodePosition(i);
                 }
             }
         }

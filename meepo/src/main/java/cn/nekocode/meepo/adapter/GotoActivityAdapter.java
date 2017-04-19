@@ -16,6 +16,7 @@
 
 package cn.nekocode.meepo.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -53,7 +54,14 @@ public class GotoActivityAdapter implements GotoAdapter<Boolean> {
         intent.setAction(method.getTargetAction());
 
         if (intent.resolveActivity(context.getPackageManager()) != null) {
-            context.startActivity(intent);
+            final Integer requestCode = method.getRequestCode(args);
+
+            if (requestCode != null && context instanceof Activity) {
+                ((Activity) context).startActivityForResult(intent, requestCode);
+
+            } else {
+                context.startActivity(intent);
+            }
             return true;
         }
 

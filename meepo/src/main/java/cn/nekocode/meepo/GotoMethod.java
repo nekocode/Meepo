@@ -36,6 +36,7 @@ public class GotoMethod {
     private HashMap<String, Integer> queryPositions = new HashMap<>(); // {key: position, ...}
     private ArrayList<Integer> queryMapPositions = new ArrayList<>(); // [position, position, ...]
     private HashMap<String, Integer> bundlePositions = new HashMap<>();
+    private Integer requestCodePosition;
 
 
     public String getUri(String scheme, String host, Object[] args) {
@@ -158,5 +159,13 @@ public class GotoMethod {
         }
 
         return bundle;
+    }
+
+    public void setRequestCodePosition(Integer requestCodePosition) {
+        this.requestCodePosition = requestCodePosition;
+    }
+
+    public Integer getRequestCode(Object[] args) {
+        return requestCodePosition == null ? null : (Integer) args[requestCodePosition];
     }
 }

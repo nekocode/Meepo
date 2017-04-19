@@ -81,6 +81,7 @@ Meepo supports below router annonations currently:
 | `@Path` | Replace the URI path's corresponding replacement block with string parameter |
 | `@Query` | Query parameter of the URI |
 | `@QueryMap` | Map of Query parameters |
+| `@RequestCode` | Request code for `startActivityForResult()` |
 
 
 ### Custom Parser and GotoAdapter
