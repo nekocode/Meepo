@@ -65,11 +65,11 @@ boolean isSucess = router.gotoUserDetail(this, "123", true);
 ```
 
 
-## Router Annonation
+## Router Annotation
 
-Meepo supports below router annonations currently:
+Meepo supports below router annotations currently:
 
-| Annonation | Description |
+| Annotation | Description |
 | :----- | :------ |
 | `@TargetClass` | Declare the target Class (Such as target Activity or Fragment) |
 | `@TargetPath` | Declare the path of URI path (and MimeType) |
