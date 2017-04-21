@@ -3,11 +3,11 @@ package cn.nekocode.meepo.sample.router;
 import android.content.Context;
 import android.content.Intent;
 
-import cn.nekocode.meepo.annonation.Bundle;
-import cn.nekocode.meepo.annonation.Query;
-import cn.nekocode.meepo.annonation.TargetClass;
-import cn.nekocode.meepo.annonation.TargetFlags;
-import cn.nekocode.meepo.annonation.TargetPath;
+import cn.nekocode.meepo.annotation.Bundle;
+import cn.nekocode.meepo.annotation.Query;
+import cn.nekocode.meepo.annotation.TargetClass;
+import cn.nekocode.meepo.annotation.TargetFlags;
+import cn.nekocode.meepo.annotation.TargetPath;
 import cn.nekocode.meepo.sample.BActivity;
 
 /**

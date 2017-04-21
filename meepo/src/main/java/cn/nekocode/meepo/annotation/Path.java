@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package cn.nekocode.meepo.annonation;
+package cn.nekocode.meepo.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
@@ -29,6 +29,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 @Target(PARAMETER)
 @Retention(RUNTIME)
-public @interface Query {
+public @interface Path {
     String value();
 }

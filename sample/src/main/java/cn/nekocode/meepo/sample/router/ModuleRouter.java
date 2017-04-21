@@ -2,7 +2,7 @@ package cn.nekocode.meepo.sample.router;
 
 import android.content.Context;
 
-import cn.nekocode.meepo.annonation.TargetClass;
+import cn.nekocode.meepo.annotation.TargetClass;
 import cn.nekocode.meepo.sample.custom.TestModule;
 import cn.nekocode.meepo.sample.custom.TestModule2;
 

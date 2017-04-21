@@ -22,17 +22,17 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import cn.nekocode.meepo.GotoMethod;
-import cn.nekocode.meepo.annonation.RequestCode;
+import cn.nekocode.meepo.annotation.RequestCode;
 import cn.nekocode.meepo.config.Config;
 import cn.nekocode.meepo.MeepoUtils;
-import cn.nekocode.meepo.annonation.Bundle;
-import cn.nekocode.meepo.annonation.Path;
-import cn.nekocode.meepo.annonation.Query;
-import cn.nekocode.meepo.annonation.QueryMap;
-import cn.nekocode.meepo.annonation.TargetAction;
-import cn.nekocode.meepo.annonation.TargetClass;
-import cn.nekocode.meepo.annonation.TargetFlags;
-import cn.nekocode.meepo.annonation.TargetPath;
+import cn.nekocode.meepo.annotation.Bundle;
+import cn.nekocode.meepo.annotation.Path;
+import cn.nekocode.meepo.annotation.Query;
+import cn.nekocode.meepo.annotation.QueryMap;
+import cn.nekocode.meepo.annotation.TargetAction;
+import cn.nekocode.meepo.annotation.TargetClass;
+import cn.nekocode.meepo.annotation.TargetFlags;
+import cn.nekocode.meepo.annotation.TargetPath;
 
 /**
  * @author nekocode (nekocode.cn@gmail.com)

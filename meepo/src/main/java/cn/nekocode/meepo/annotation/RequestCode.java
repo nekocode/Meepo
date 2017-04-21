@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package cn.nekocode.meepo.annonation;
+package cn.nekocode.meepo.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
