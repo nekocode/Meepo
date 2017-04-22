@@ -1,7 +1,7 @@
 # Meepo
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0.html) [![Release](https://jitpack.io/v/nekocode/Meepo.svg)](https://jitpack.io/#nekocode/Meepo)
 
-Meepo is a **[retrofit](https://github.com/square/retrofit)**-like router generator for Android. You can use it to create routers for Activities, Fragments and even any things.
+Meepo is a router generator for android, similar to **[retrofit](https://github.com/square/retrofit)**. You can use it to create routers for Activities, Fragments and even any things.
 
 
 ### Install
@@ -18,7 +18,7 @@ dependencies {
 
 ## Usage
 
-Declare the router interface firstly. Meepo turns your navigation methods into a Java interface.
+Declare the router interface first and then Meepo turns your navigation methods into a Java interface.
 
 ```java
 public interface Router {
@@ -32,7 +32,7 @@ public interface Router {
 }
 ```
 
-If you want to use URI to open your Activity, you need to add an `<intent-filter>` element in your manifest file for the corresponding `<activity>` element.
+If you want to use URI to open your Activity, you need to add an `<intent-filter>` element in your manifest file to the corresponding `<activity>` element.
 
 ```xml
 <activity android:name=".UserDetailActivity">
@@ -48,7 +48,7 @@ If you want to use URI to open your Activity, you need to add an `<intent-filter
 </activity>
 ```
 
-Use the `Meepo` class to generate an implementation of your router interface.
+Use the `Meepo` class to build an implementation for your router interface.
 
 ```java
 final Meepo meepo = new Meepo.Builder()
@@ -84,7 +84,7 @@ Meepo supports below router annonations currently:
 
 ## Custom Parser and GotoAdapter
 
-You can create custom Parser and GotoAdapter for Meepo. See the **[sample](sample/src/main/java/cn/nekocode/meepo/sample/custom)** for more detail. It means that you have the ability to make router for anything.
+You can create custom Parser and GotoAdapter for Meepo. See the **[sample](sample/src/main/java/cn/nekocode/meepo/sample/custom)** for more details. It means that you have the ability to make router for anything.
 
 ```java
 final ModuleRouter moduleRouter = new Meepo.Builder()
