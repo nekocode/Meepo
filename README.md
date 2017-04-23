@@ -67,7 +67,7 @@ boolean isSucess = router.gotoUserDetail(this, "123", true);
 
 ## Router Annotation
 
-Meepo supports below router annonations currently:
+Meepo supports below router annotations currently:
 
 | Annotation | Description |
 | :----- | :------ |
