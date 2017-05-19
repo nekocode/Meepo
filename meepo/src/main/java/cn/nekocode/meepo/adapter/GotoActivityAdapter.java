@@ -37,7 +37,9 @@ public class GotoActivityAdapter implements GotoAdapter<Boolean> {
     @Override
     public Boolean goTo(@NonNull Config config, @NonNull GotoMethod method, @NonNull Object[] args) {
         final Context context = MeepoUtils.getContextFromFirstParameter(args);
-        final Class targetClass = method.getTargetClass();
+        if (context == null) {
+            return false;
+        }
 
         String uri = null;
         if (config instanceof UriConfig) {
@@ -45,6 +47,7 @@ public class GotoActivityAdapter implements GotoAdapter<Boolean> {
             uri = method.getUri(uriConfig.getScheme(), uriConfig.getHost(), args);
         }
 
+        final Class targetClass = method.getTargetClass();
         final Intent intent = new Intent();
         if (targetClass != null) {
             intent.setClass(context, method.getTargetClass());
