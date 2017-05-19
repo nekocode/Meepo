@@ -41,12 +41,13 @@ public final class Meepo {
     private GotoAdapter gotoAdapter;
 
 
-    private Meepo(Builder builder) {
+    private Meepo(@NonNull Builder builder) {
         this.config = builder.config;
         this.parser = builder.parser;
         this.gotoAdapter = builder.gotoAdapter;
     }
 
+    @NonNull
     public <T> T create(@NonNull Class<T> routerClass) {
         return (T) Proxy.newProxyInstance(routerClass.getClassLoader(),
                 new Class[]{routerClass}, new MeepoInvocationHandler());
@@ -78,21 +79,25 @@ public final class Meepo {
         private Parser parser;
         private GotoAdapter gotoAdapter;
 
+        @NonNull
         public Builder config(@NonNull Config config) {
             this.config = config;
             return this;
         }
 
+        @NonNull
         public Builder parser(@Nullable Parser parser) {
             this.parser = parser;
             return this;
         }
 
+        @NonNull
         public Builder adapter(@Nullable GotoAdapter gotoAdapter) {
             this.gotoAdapter = gotoAdapter;
             return this;
         }
 
+        @NonNull
         public Meepo build() {
             if (config == null) config(new UriConfig());
             if (parser == null) parser(new DefaultParser());

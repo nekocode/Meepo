@@ -17,6 +17,8 @@
 package cn.nekocode.meepo;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
@@ -39,7 +41,8 @@ public class GotoMethod {
     private Integer requestCodePosition;
 
 
-    public String getUri(String scheme, String host, Object[] args) {
+    @Nullable
+    public String getUri(@Nullable String scheme, @Nullable String host, @NonNull Object[] args) {
         if (TextUtils.isEmpty(scheme)) {
             return null;
         }
@@ -52,10 +55,12 @@ public class GotoMethod {
         return hostUri + path + queryString;
     }
 
+    @Nullable
     public String getMimeType() {
         return mimeType;
     }
 
+    @Nullable
     public Class getTargetClass() {
         return targetClass;
     }
@@ -64,16 +69,17 @@ public class GotoMethod {
         return targetFlags;
     }
 
+    @Nullable
     public String getTargetAction() {
         return targetAction;
     }
 
 
-    public void setTargetClass(Class targetClass) {
+    public void setTargetClass(@Nullable Class targetClass) {
         this.targetClass = targetClass;
     }
 
-    public void setMimeType(String mimeType) {
+    public void setMimeType(@Nullable String mimeType) {
         this.mimeType = mimeType;
     }
 
@@ -81,27 +87,28 @@ public class GotoMethod {
         this.targetFlags = targetFlags;
     }
 
-    public void setTargetAction(String targetAction) {
+    public void setTargetAction(@Nullable String targetAction) {
         this.targetAction = targetAction;
     }
 
-    public void addPathSegement(Object pathSegements) {
+    public void addPathSegement(@NonNull Object pathSegements) {
         this.pathSegements.add(pathSegements);
     }
 
-    public void addQueryPositions(String key, Integer queryPosition) {
+    public void addQueryPositions(@NonNull String key, @NonNull Integer queryPosition) {
         this.queryPositions.put(key, queryPosition);
     }
 
-    public void addQueryMapPositions(Integer queryMapPosition) {
+    public void addQueryMapPositions(@NonNull Integer queryMapPosition) {
         this.queryMapPositions.add(queryMapPosition);
     }
 
-    public void addBundlePositions(String key, Integer bundlePosition) {
+    public void addBundlePositions(@NonNull String key, @NonNull Integer bundlePosition) {
         this.bundlePositions.put(key, bundlePosition);
     }
 
-    private String getPath(Object[] args) {
+    @NonNull
+    private String getPath(@NonNull Object[] args) {
         final StringBuilder stringBuilder = new StringBuilder();
 
         for (Object segment : pathSegements) {
@@ -115,7 +122,8 @@ public class GotoMethod {
         return stringBuilder.toString();
     }
 
-    private String getQueryString(Object[] args) {
+    @NonNull
+    private String getQueryString(@NonNull Object[] args) {
         final StringBuilder stringBuilder = new StringBuilder("?");
 
         int count = 0;
@@ -148,7 +156,8 @@ public class GotoMethod {
         return count == 0 ? "" : stringBuilder.toString();
     }
 
-    public Bundle getBundle(Object[] args) {
+    @NonNull
+    public Bundle getBundle(@NonNull Object[] args) {
         final Bundle bundle = new Bundle();
 
         for (Map.Entry<String, Integer> entry : bundlePositions.entrySet()) {
@@ -161,11 +170,12 @@ public class GotoMethod {
         return bundle;
     }
 
-    public void setRequestCodePosition(Integer requestCodePosition) {
+    public void setRequestCodePosition(@Nullable Integer requestCodePosition) {
         this.requestCodePosition = requestCodePosition;
     }
 
-    public Integer getRequestCode(Object[] args) {
+    @Nullable
+    public Integer getRequestCode(@NonNull Object[] args) {
         return requestCodePosition == null ? null : (Integer) args[requestCodePosition];
     }
 }

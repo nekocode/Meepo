@@ -37,8 +37,9 @@ public class MeepoUtils {
             return false;
     }
 
+    @Nullable
     public static Context getContextFromFirstParameter(Object[] args) {
-        if (args.length == 0 || !(args[0] instanceof Context)) {
+        if (args.length == 0 || !(args[0] != null && args[0] instanceof Context)) {
             throw new RuntimeException("First parameter must be context.");
         } else {
             return (Context) args[0];

@@ -16,6 +16,8 @@
 
 package cn.nekocode.meepo.parser;
 
+import android.support.annotation.NonNull;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -39,8 +41,9 @@ import cn.nekocode.meepo.annotation.TargetPath;
  */
 public class DefaultParser implements Parser {
 
+    @NonNull
     @Override
-    public GotoMethod parseMethod(Config config, Method method) {
+    public GotoMethod parseMethod(@NonNull Config config, @NonNull Method method) {
         final Annotation[] methodAnnotations = method.getAnnotations();
         final Annotation[][] parameterAnnotationsArray = method.getParameterAnnotations();
 
@@ -52,7 +55,7 @@ public class DefaultParser implements Parser {
     }
 
     protected void parseMethodAnnotations(
-            GotoMethod goTo, Annotation[] methodAnnotations, Annotation[][] parameterAnnotationsArray) {
+            @NonNull GotoMethod goTo, @NonNull Annotation[] methodAnnotations, @NonNull Annotation[][] parameterAnnotationsArray) {
 
         final HashMap<String, Integer> positions = new HashMap<>();
         for (int i = 0; i < parameterAnnotationsArray.length; i++) {
@@ -105,7 +108,7 @@ public class DefaultParser implements Parser {
         }
     }
 
-    protected void parseParameterAnnotation(GotoMethod goTo, Annotation[][] parameterAnnotationsArray) {
+    protected void parseParameterAnnotation(@NonNull GotoMethod goTo, @NonNull Annotation[][] parameterAnnotationsArray) {
         for (int i = 0; i < parameterAnnotationsArray.length; i++) {
             final Annotation[] annotations = parameterAnnotationsArray[i];
 

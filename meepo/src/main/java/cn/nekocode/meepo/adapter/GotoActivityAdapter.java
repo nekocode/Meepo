@@ -20,6 +20,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import cn.nekocode.meepo.GotoMethod;
 import cn.nekocode.meepo.config.Config;
@@ -31,8 +33,9 @@ import cn.nekocode.meepo.config.UriConfig;
  */
 public class GotoActivityAdapter implements GotoAdapter<Boolean> {
 
+    @Nullable
     @Override
-    public Boolean goTo(Config config, GotoMethod method, Object[] args) {
+    public Boolean goTo(@NonNull Config config, @NonNull GotoMethod method, @NonNull Object[] args) {
         final Context context = MeepoUtils.getContextFromFirstParameter(args);
         final Class targetClass = method.getTargetClass();
 

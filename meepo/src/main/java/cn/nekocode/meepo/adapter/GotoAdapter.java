@@ -16,6 +16,9 @@
 
 package cn.nekocode.meepo.adapter;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import cn.nekocode.meepo.GotoMethod;
 import cn.nekocode.meepo.config.Config;
 
@@ -23,5 +26,6 @@ import cn.nekocode.meepo.config.Config;
  * @author nekocode (nekocode.cn@gmail.com)
  */
 public interface GotoAdapter<T> {
-    T goTo(Config config, GotoMethod method, Object[] args);
+    @Nullable
+    T goTo(@NonNull Config config, @NonNull GotoMethod method, @NonNull Object[] args);
 }
