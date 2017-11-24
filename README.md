@@ -72,6 +72,7 @@ Meepo supports below router annotations currently:
 | Annotation | Description |
 | :----- | :------ |
 | `@TargetClass` | Declare the target Class (Such as target Activity or Fragment) |
+| `@TargetClassName` | Declare the target Class name |
 | `@TargetPath` | Declare the path of URI path (and MimeType) |
 | `@TargetAction` | Declare the Intent action |
 | `@TargetFlags` | Declare the Intent flags |
