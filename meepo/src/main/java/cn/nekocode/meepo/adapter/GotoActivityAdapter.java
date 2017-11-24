@@ -50,7 +50,11 @@ public class GotoActivityAdapter implements GotoAdapter<Boolean> {
         final Class targetClass = method.getTargetClass();
         final Intent intent = new Intent();
         if (targetClass != null) {
-            intent.setClass(context, method.getTargetClass());
+            intent.setClass(context, targetClass);
+        }
+        final String targetClassName = method.getTargetClassName();
+        if (targetClassName != null) {
+            intent.setClassName(context, targetClassName);
         }
         if (uri != null) {
             intent.setDataAndType(Uri.parse(uri), method.getMimeType());

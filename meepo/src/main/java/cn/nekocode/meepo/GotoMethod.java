@@ -31,6 +31,7 @@ import java.util.Map;
 public class GotoMethod {
     private String mimeType;
     private Class targetClass;
+    private String targetClassName;
     private int targetFlags;
     private String targetAction;
 
@@ -40,6 +41,30 @@ public class GotoMethod {
     private HashMap<String, Integer> bundlePositions = new HashMap<>();
     private Integer requestCodePosition;
 
+
+    @Nullable
+    public String getTargetAction() {
+        return targetAction;
+    }
+
+    @Nullable
+    public Class getTargetClass() {
+        return targetClass;
+    }
+
+    @Nullable
+    public String getTargetClassName() {
+        return targetClassName;
+    }
+
+    public int getTargetFlags() {
+        return targetFlags;
+    }
+
+    @Nullable
+    public String getMimeType() {
+        return mimeType;
+    }
 
     @Nullable
     public String getUri(@Nullable String scheme, @Nullable String host, @NonNull Object[] args) {
@@ -55,40 +80,26 @@ public class GotoMethod {
         return hostUri + path + queryString;
     }
 
-    @Nullable
-    public String getMimeType() {
-        return mimeType;
-    }
 
-    @Nullable
-    public Class getTargetClass() {
-        return targetClass;
-    }
 
-    public int getTargetFlags() {
-        return targetFlags;
+    public void setTargetAction(@Nullable String targetAction) {
+        this.targetAction = targetAction;
     }
-
-    @Nullable
-    public String getTargetAction() {
-        return targetAction;
-    }
-
 
     public void setTargetClass(@Nullable Class targetClass) {
         this.targetClass = targetClass;
     }
 
-    public void setMimeType(@Nullable String mimeType) {
-        this.mimeType = mimeType;
+    public void setTargetClassName(@Nullable String targetClassName) {
+        this.targetClassName = targetClassName;
     }
 
     public void setTargetFlags(int targetFlags) {
         this.targetFlags = targetFlags;
     }
 
-    public void setTargetAction(@Nullable String targetAction) {
-        this.targetAction = targetAction;
+    public void setMimeType(@Nullable String mimeType) {
+        this.mimeType = mimeType;
     }
 
     public void addPathSegement(@NonNull Object pathSegements) {

@@ -25,6 +25,7 @@ import java.util.Locale;
 
 import cn.nekocode.meepo.GotoMethod;
 import cn.nekocode.meepo.annotation.RequestCode;
+import cn.nekocode.meepo.annotation.TargetClassName;
 import cn.nekocode.meepo.config.Config;
 import cn.nekocode.meepo.MeepoUtils;
 import cn.nekocode.meepo.annotation.Bundle;
@@ -71,6 +72,9 @@ public class DefaultParser implements Parser {
         for (Annotation annotation : methodAnnotations) {
             if (annotation instanceof TargetClass) {
                 goTo.setTargetClass(((TargetClass) annotation).value());
+
+            } else if (annotation instanceof TargetClassName) {
+                goTo.setTargetClassName(((TargetClassName) annotation).value());
 
             } else if (annotation instanceof TargetPath) {
                 final TargetPath path = (TargetPath) annotation;
