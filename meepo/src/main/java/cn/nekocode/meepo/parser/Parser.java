@@ -20,7 +20,7 @@ import android.support.annotation.NonNull;
 
 import java.lang.reflect.Method;
 
-import cn.nekocode.meepo.GotoMethod;
+import cn.nekocode.meepo.CallMethod;
 import cn.nekocode.meepo.config.Config;
 
 /**
@@ -28,5 +28,5 @@ import cn.nekocode.meepo.config.Config;
  */
 public interface Parser {
     @NonNull
-    GotoMethod parseMethod(@NonNull Config config, @NonNull Method method);
+    CallMethod parseMethod(@NonNull Config config, @NonNull Method method);
 }

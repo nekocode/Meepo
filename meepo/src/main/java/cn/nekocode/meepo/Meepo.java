@@ -25,8 +25,8 @@ import java.lang.reflect.Proxy;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import cn.nekocode.meepo.adapter.GotoActivityAdapter;
-import cn.nekocode.meepo.adapter.GotoAdapter;
+import cn.nekocode.meepo.adapter.ActivityCallAdapter;
+import cn.nekocode.meepo.adapter.CallAdapter;
 import cn.nekocode.meepo.config.Config;
 import cn.nekocode.meepo.config.UriConfig;
 import cn.nekocode.meepo.parser.DefaultParser;
@@ -38,13 +38,13 @@ import cn.nekocode.meepo.parser.Parser;
 public final class Meepo {
     private Config config;
     private Parser parser;
-    private GotoAdapter gotoAdapter;
+    private CallAdapter callAdapter;
 
 
     private Meepo(@NonNull Builder builder) {
         this.config = builder.config;
         this.parser = builder.parser;
-        this.gotoAdapter = builder.gotoAdapter;
+        this.callAdapter = builder.callAdapter;
     }
 
     @NonNull
@@ -54,16 +54,16 @@ public final class Meepo {
     }
 
     private class MeepoInvocationHandler implements InvocationHandler {
-        private final Map<Method, GotoMethod> methodCache = new ConcurrentHashMap<>();
+        private final Map<Method, CallMethod> methodCache = new ConcurrentHashMap<>();
 
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            return gotoAdapter.goTo(config, loadGoto(method), args);
+            return callAdapter.call(config, getCallMethod(method), args);
         }
 
-        private GotoMethod loadGoto(Method method) {
-            GotoMethod result = methodCache.get(method);
+        private CallMethod getCallMethod(Method method) {
+            CallMethod result = methodCache.get(method);
             if (result != null) return result;
 
             synchronized (methodCache) {
@@ -77,7 +77,7 @@ public final class Meepo {
     public static class Builder {
         private Config config;
         private Parser parser;
-        private GotoAdapter gotoAdapter;
+        private CallAdapter callAdapter;
 
         @NonNull
         public Builder config(@NonNull Config config) {
@@ -92,8 +92,8 @@ public final class Meepo {
         }
 
         @NonNull
-        public Builder adapter(@Nullable GotoAdapter gotoAdapter) {
-            this.gotoAdapter = gotoAdapter;
+        public Builder adapter(@Nullable CallAdapter callAdapter) {
+            this.callAdapter = callAdapter;
             return this;
         }
 
@@ -101,7 +101,7 @@ public final class Meepo {
         public Meepo build() {
             if (config == null) config(new UriConfig());
             if (parser == null) parser(new DefaultParser());
-            if (gotoAdapter == null) adapter(new GotoActivityAdapter());
+            if (callAdapter == null) adapter(new ActivityCallAdapter());
             return new Meepo(this);
         }
     }

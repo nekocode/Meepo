@@ -6,7 +6,7 @@ import android.view.View;
 
 import cn.nekocode.meepo.Meepo;
 import cn.nekocode.meepo.config.UriConfig;
-import cn.nekocode.meepo.sample.custom.GotoModuleAdapter;
+import cn.nekocode.meepo.sample.custom.ModuleCallAdapter;
 import cn.nekocode.meepo.sample.custom.ModuleConfig;
 import cn.nekocode.meepo.sample.router.ActivityRouter;
 import cn.nekocode.meepo.sample.router.ModuleRouter;
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     final ModuleRouter moduleRouter = new Meepo.Builder()
             .config(new ModuleConfig("TEST"))
-            .adapter(new GotoModuleAdapter())
+            .adapter(new ModuleCallAdapter())
             .build()
             .create(ModuleRouter.class);
 

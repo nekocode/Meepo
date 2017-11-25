@@ -28,7 +28,7 @@ import java.util.Map;
 /**
  * @author nekocode (nekocode.cn@gmail.com)
  */
-public class GotoMethod {
+public class CallMethod {
     private String mimeType;
     private Class targetClass;
     private String targetClassName;

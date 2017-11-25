@@ -23,7 +23,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Locale;
 
-import cn.nekocode.meepo.GotoMethod;
+import cn.nekocode.meepo.CallMethod;
 import cn.nekocode.meepo.annotation.RequestCode;
 import cn.nekocode.meepo.annotation.TargetClassName;
 import cn.nekocode.meepo.config.Config;
@@ -44,19 +44,19 @@ public class DefaultParser implements Parser {
 
     @NonNull
     @Override
-    public GotoMethod parseMethod(@NonNull Config config, @NonNull Method method) {
+    public CallMethod parseMethod(@NonNull Config config, @NonNull Method method) {
         final Annotation[] methodAnnotations = method.getAnnotations();
         final Annotation[][] parameterAnnotationsArray = method.getParameterAnnotations();
 
-        final GotoMethod goTo = new GotoMethod();
-        parseMethodAnnotations(goTo, methodAnnotations, parameterAnnotationsArray);
-        parseParameterAnnotation(goTo, parameterAnnotationsArray);
+        final CallMethod callMethod = new CallMethod();
+        parseMethodAnnotations(callMethod, methodAnnotations, parameterAnnotationsArray);
+        parseParameterAnnotation(callMethod, parameterAnnotationsArray);
 
-        return goTo;
+        return callMethod;
     }
 
     protected void parseMethodAnnotations(
-            @NonNull GotoMethod goTo, @NonNull Annotation[] methodAnnotations, @NonNull Annotation[][] parameterAnnotationsArray) {
+            @NonNull CallMethod callMethod, @NonNull Annotation[] methodAnnotations, @NonNull Annotation[][] parameterAnnotationsArray) {
 
         final HashMap<String, Integer> positions = new HashMap<>();
         for (int i = 0; i < parameterAnnotationsArray.length; i++) {
@@ -71,10 +71,10 @@ public class DefaultParser implements Parser {
 
         for (Annotation annotation : methodAnnotations) {
             if (annotation instanceof TargetClass) {
-                goTo.setTargetClass(((TargetClass) annotation).value());
+                callMethod.setTargetClass(((TargetClass) annotation).value());
 
             } else if (annotation instanceof TargetClassName) {
-                goTo.setTargetClassName(((TargetClassName) annotation).value());
+                callMethod.setTargetClassName(((TargetClassName) annotation).value());
 
             } else if (annotation instanceof TargetPath) {
                 final TargetPath path = (TargetPath) annotation;
@@ -85,12 +85,12 @@ public class DefaultParser implements Parser {
 
                     if (i % 2 == 0) {
                         if (!MeepoUtils.isTextEmpty(segment)) {
-                            goTo.addPathSegement(segment);
+                            callMethod.addPathSegement(segment);
                         }
                     } else {
                         final Integer position = positions.get(segment);
                         if (position != null) {
-                            goTo.addPathSegement(position);
+                            callMethod.addPathSegement(position);
                         } else {
                             throw new RuntimeException(String.format(Locale.getDefault(),
                                     "@Path(\"%s\") not found.", segment));
@@ -99,35 +99,35 @@ public class DefaultParser implements Parser {
                 }
 
                 if (!MeepoUtils.isTextEmpty(path.mimeType())) {
-                    goTo.setMimeType(path.mimeType());
+                    callMethod.setMimeType(path.mimeType());
                 }
 
             } else if (annotation instanceof TargetFlags) {
-                goTo.setTargetFlags(((TargetFlags) annotation).value());
+                callMethod.setTargetFlags(((TargetFlags) annotation).value());
 
             } else if (annotation instanceof TargetAction) {
-                goTo.setTargetAction(((TargetAction) annotation).value());
+                callMethod.setTargetAction(((TargetAction) annotation).value());
 
             }
         }
     }
 
-    protected void parseParameterAnnotation(@NonNull GotoMethod goTo, @NonNull Annotation[][] parameterAnnotationsArray) {
+    protected void parseParameterAnnotation(@NonNull CallMethod callMethod, @NonNull Annotation[][] parameterAnnotationsArray) {
         for (int i = 0; i < parameterAnnotationsArray.length; i++) {
             final Annotation[] annotations = parameterAnnotationsArray[i];
 
             for (Annotation annotation : annotations) {
                 if (annotation instanceof Bundle) {
-                    goTo.addBundlePositions(((Bundle) annotation).value(), i);
+                    callMethod.addBundlePositions(((Bundle) annotation).value(), i);
 
                 } else if (annotation instanceof Query) {
-                    goTo.addQueryPositions(((Query) annotation).value(), i);
+                    callMethod.addQueryPositions(((Query) annotation).value(), i);
 
                 } else if (annotation instanceof QueryMap) {
-                    goTo.addQueryMapPositions(i);
+                    callMethod.addQueryMapPositions(i);
 
                 } else if (annotation instanceof RequestCode) {
-                    goTo.setRequestCodePosition(i);
+                    callMethod.setRequestCodePosition(i);
                 }
             }
         }

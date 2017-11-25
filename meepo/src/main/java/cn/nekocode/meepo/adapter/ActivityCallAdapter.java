@@ -23,7 +23,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import cn.nekocode.meepo.GotoMethod;
+import cn.nekocode.meepo.CallMethod;
 import cn.nekocode.meepo.config.Config;
 import cn.nekocode.meepo.MeepoUtils;
 import cn.nekocode.meepo.config.UriConfig;
@@ -31,11 +31,11 @@ import cn.nekocode.meepo.config.UriConfig;
 /**
  * @author nekocode (nekocode.cn@gmail.com)
  */
-public class GotoActivityAdapter implements GotoAdapter<Boolean> {
+public class ActivityCallAdapter implements CallAdapter<Boolean> {
 
     @Nullable
     @Override
-    public Boolean goTo(@NonNull Config config, @NonNull GotoMethod method, @NonNull Object[] args) {
+    public Boolean call(@NonNull Config config, @NonNull CallMethod method, @NonNull Object[] args) {
         final Context context = MeepoUtils.getContextFromFirstParameter(args);
         if (context == null) {
             return false;

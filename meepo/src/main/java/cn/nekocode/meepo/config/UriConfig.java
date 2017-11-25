@@ -25,6 +25,7 @@ public class UriConfig implements Config {
     private String scheme;
     private String host;
 
+
     public UriConfig scheme(@Nullable String scheme) {
         this.scheme = scheme;
         return this;

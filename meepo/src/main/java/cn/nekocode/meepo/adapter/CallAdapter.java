@@ -19,13 +19,14 @@ package cn.nekocode.meepo.adapter;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import cn.nekocode.meepo.GotoMethod;
+import cn.nekocode.meepo.CallMethod;
 import cn.nekocode.meepo.config.Config;
 
 /**
  * @author nekocode (nekocode.cn@gmail.com)
  */
-public interface GotoAdapter<T> {
+public interface CallAdapter<T> {
+
     @Nullable
-    T goTo(@NonNull Config config, @NonNull GotoMethod method, @NonNull Object[] args);
+    T call(@NonNull Config config, @NonNull CallMethod method, @NonNull Object[] args);
 }

@@ -83,15 +83,15 @@ Meepo supports below router annotations currently:
 | `@RequestCode` | Request code for `startActivityForResult()` |
 
 
-## Custom Parser and GotoAdapter
+## Custom Parser and CallAdapter
 
-You can create custom Parser and GotoAdapter for Meepo. See the **[sample](sample/src/main/java/cn/nekocode/meepo/sample/custom)** for more details. It means that you have the ability to make router for anything.
+You can create custom Parser and CallAdapter for Meepo. See the **[sample](sample/src/main/java/cn/nekocode/meepo/sample/custom)** for more details. It means that you have the ability to make router for anything.
 
 ```java
 final ModuleRouter moduleRouter = new Meepo.Builder()
         .config(new ModuleConfig("TEST"))
         .parser(new ModuleParser())
-        .adapter(new GotoModuleAdapter())
+        .adapter(new ModuleCallAdapter())
         .build()
         .create(ModuleRouter.class);
 ```
