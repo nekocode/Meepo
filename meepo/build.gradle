@@ -8,8 +8,8 @@ android {
     buildToolsVersion BUILD_TOOLS_VERSION
 
     defaultConfig {
-        minSdkVersion 11
-        targetSdkVersion 25
+        minSdkVersion 14
+        targetSdkVersion 26
     }
     lintOptions {
         abortOnError false
@@ -17,6 +17,6 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    provided "com.android.support:support-annotations:$SUPPORT_LIBS_VERSION"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    compileOnly "com.android.support:support-annotations:$SUPPORT_LIBS_VERSION"
 }
