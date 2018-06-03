@@ -186,6 +186,7 @@ public class CallMethod {
         for (Map.Entry<String, Integer> entry : bundlePositions.entrySet()) {
             key = entry.getKey();
             value = args[entry.getValue()];
+            if (value == null) continue;
 
             MeepoUtils.putValueToBundle(bundle, key, value);
         }
