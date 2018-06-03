@@ -138,9 +138,13 @@ public class CallMethod {
         final StringBuilder stringBuilder = new StringBuilder("?");
 
         int count = 0;
+        String key, value;
+        Object arg;
         for (Map.Entry<String, Integer> entry : queryPositions.entrySet()) {
-            final String key = entry.getKey();
-            final String value = String.valueOf(args[entry.getValue()]);
+            key = entry.getKey();
+            arg = args[entry.getValue()];
+            if (arg == null) continue;
+            value = arg.toString();
 
             if (count++ == 0) {
                 stringBuilder.append(key).append("=").append(value);
@@ -149,12 +153,18 @@ public class CallMethod {
             }
         }
 
+        Map<String, ?> queryMap;
         for (Integer position : queryMapPositions) {
-            final Map<String, ?> queryMap = (Map<String, ?>) args[position];
+            arg = args[position];
+            if (arg == null) continue;
+            queryMap = (Map<String, ?>) arg;
 
+            Object tmpValue;
             for (Map.Entry<String, ?> entry : queryMap.entrySet()) {
-                final String key = entry.getKey();
-                final String value = String.valueOf(entry.getValue());
+                key = entry.getKey();
+                tmpValue = entry.getValue();
+                if (tmpValue == null) continue;
+                value = tmpValue.toString();
 
                 if (count++ == 0) {
                     stringBuilder.append(key).append("=").append(value);
@@ -171,9 +181,11 @@ public class CallMethod {
     public Bundle getBundle(@NonNull Object[] args) {
         final Bundle bundle = new Bundle();
 
+        String key;
+        Object value;
         for (Map.Entry<String, Integer> entry : bundlePositions.entrySet()) {
-            final String key = entry.getKey();
-            final Object value = args[entry.getValue()];
+            key = entry.getKey();
+            value = args[entry.getValue()];
 
             MeepoUtils.putValueToBundle(bundle, key, value);
         }

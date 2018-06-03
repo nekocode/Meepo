@@ -108,14 +108,6 @@ public class MeepoUtils {
             bundle.putShortArray(key, (short[]) value);
         } else if (value instanceof Serializable) {
             bundle.putSerializable(key, (Serializable) value);
-        } else if (value instanceof Size) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                bundle.putSize(key, (Size) value);
-            }
-        } else if (value instanceof SizeF) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                bundle.putSizeF(key, (SizeF) value);
-            }
         } else if (value instanceof List) {
             try {
                 bundle.putIntegerArrayList(key, (ArrayList<Integer>) value);
@@ -139,6 +131,16 @@ public class MeepoUtils {
             } catch (ClassCastException ignored) {
             }
         } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                if (value instanceof Size) {
+                    bundle.putSize(key, (Size) value);
+                    return;
+                } else if (value instanceof SizeF) {
+                    bundle.putSizeF(key, (SizeF) value);
+                    return;
+                }
+            }
+
             throw new RuntimeException(String.format(Locale.getDefault(),
                     "Arguments extra %s has wrong type %s.", key, value.getClass().getName()));
         }
