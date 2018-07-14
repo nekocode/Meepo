@@ -4,7 +4,7 @@
 Meepo is a router generator for android, similar to **[retrofit](https://github.com/square/retrofit)**. You can use it to create routers for Activities, Fragments and even any things.
 
 
-### Install
+### Intergation
 
 ```gradle
 repositories {
@@ -18,21 +18,23 @@ dependencies {
 
 ## Usage
 
-Declare the router interface first and then Meepo turns your navigation methods into a Java interface.
+Firstly, declare a router interface:
 
 ```java
 public interface Router {
-    @TargetPath("user/{user_id}/detail")
-    boolean gotoUserDetail(Context context, @Path("user_id") String userId, 
-                           @Query("show_title") boolean showTitle);
+    @Path("user/{user_id}/detail")
+    @RequestCode(1)
+    boolean gotoUserDetail(Context context, @PathParam("user_id") String userId, 
+                           @QueryParam("show_title") boolean showTitle);
 
-    @TargetClass(StoreActivity.class)
-    @TargetFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-    void gotoB(Context context, @Bundle("title") String title);
+    @Clazz(StoreActivity.class)
+    @Flags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+    void gotoB(Context context, @BundleParam("title") String title,
+               @RequestCodeParam int requestCode);
 }
 ```
 
-If you want to use URI to open your Activity, you need to add an `<intent-filter>` element in your manifest file to the corresponding `<activity>` element.
+If you want to open your Activity via URI, you need to add a uri intent filter to the corresponding `<activity>` element in the manifest file:
 
 ```xml
 <activity android:name=".UserDetailActivity">
@@ -48,7 +50,7 @@ If you want to use URI to open your Activity, you need to add an `<intent-filter
 </activity>
 ```
 
-Use the `Meepo` class to build an implementation for your router interface.
+And then obtain an implementation of your router interface:
 
 ```java
 final Meepo meepo = new Meepo.Builder()
@@ -58,7 +60,7 @@ final Meepo meepo = new Meepo.Builder()
 final Router router = meepo.create(Router.class);
 ```
 
-Now, you can use the `router`'s methods to navigate activity instead of `startActivity()` directly.
+Now, you can invoke the router's navigation methods:
 
 ```java
 boolean isSucess = router.gotoUserDetail(this, "123", true);
@@ -67,25 +69,26 @@ boolean isSucess = router.gotoUserDetail(this, "123", true);
 
 ## Router Annotation
 
-Meepo supports below router annotations currently:
+This library currently provides the following annotations:
 
 | Annotation | Description |
 | :----- | :------ |
-| `@TargetClass` | Declare the target Class (Such as target Activity or Fragment) |
-| `@TargetClassName` | Declare the target Class name |
-| `@TargetPath` | Declare the path of URI path (and MimeType) |
-| `@TargetAction` | Declare the Intent action |
-| `@TargetFlags` | Declare the Intent flags |
-| `@Bundle` | Put data into the Intent's Bundle |
-| `@Path` | Replace the URI path's corresponding replacement block with string parameter |
-| `@Query` | Query parameter of the URI |
-| `@QueryMap` | Map of Query parameters |
-| `@RequestCode` | Request code for `startActivityForResult()` |
+| `@Clazz` | Class of target Activity  |
+| `@ClazzName` | Class name of target Activity |
+| `@Path` | URI path and mime type of target Activity |
+| `@Action` | Action of Intent |
+| `@Flags` | Flags of Intent |
+| `@RequestCode` | Request code of Intent |
+| `@BundleParam` | Parameter that will be put into the extra of Intent |
+| `@PathParam` | Parameter that will be used to replace the URI path's corresponding replacement block |
+| `@QueryParam` | Query parameter of the URI |
+| `@QueryMapParam` | Map of Query parameters |
+| `@RequestCodeParam` | Request code of Intent |
 
 
 ## Custom Parser and CallAdapter
 
-You can create custom Parser and CallAdapter for Meepo. See the **[sample](sample/src/main/java/cn/nekocode/meepo/sample/custom)** for more details. It means that you have the ability to make router for anything.
+You can create custom Parser and CallAdapter. You can reference the **[sample](sample/src/main/java/cn/nekocode/meepo/sample/custom)** module. It means that you can create router for anything.
 
 ```java
 final ModuleRouter moduleRouter = new Meepo.Builder()
