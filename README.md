@@ -71,7 +71,7 @@ boolean isSucess = router.gotoUserDetail(this, "123", true);
 
 This library currently provides the following annotations:
 
-| Annotation | Description |
+| Method Annotation | Description |
 | :----- | :------ |
 | `@Clazz` | Class of target Activity  |
 | `@ClazzName` | Class name of target Activity |
@@ -79,6 +79,9 @@ This library currently provides the following annotations:
 | `@Action` | Action of Intent |
 | `@Flags` | Flags of Intent |
 | `@RequestCode` | Request code of Intent |
+
+| Parameter Annotation | Description |
+| :----- | :------ |
 | `@BundleParam` | Parameter that will be put into the extra of Intent |
 | `@PathParam` | Parameter that will be used to replace the URI path's corresponding replacement block |
 | `@QueryParam` | Query parameter of the URI |
