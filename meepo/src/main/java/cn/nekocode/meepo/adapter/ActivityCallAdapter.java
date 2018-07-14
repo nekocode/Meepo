@@ -47,21 +47,24 @@ public class ActivityCallAdapter implements CallAdapter<Boolean> {
             uri = method.getUri(uriConfig.getScheme(), uriConfig.getHost(), args);
         }
 
-        final Class targetClass = method.getTargetClass();
+        final Class clazz = method.getClazz();
         final Intent intent = new Intent();
-        if (targetClass != null) {
-            intent.setClass(context, targetClass);
+        if (clazz != null) {
+            intent.setClass(context, clazz);
         }
-        final String targetClassName = method.getTargetClassName();
-        if (targetClassName != null) {
-            intent.setClassName(context, targetClassName);
+        final String clazzName = method.getClazzName();
+        if (clazzName != null) {
+            intent.setClassName(context, clazzName);
         }
         if (uri != null) {
             intent.setDataAndType(Uri.parse(uri), method.getMimeType());
         }
         intent.putExtras(method.getBundle(args));
-        intent.setFlags(method.getTargetFlags());
-        intent.setAction(method.getTargetAction());
+        final Integer flags = method.getFlags();
+        if (flags != null) {
+            intent.setFlags(flags);
+        }
+        intent.setAction(method.getAction());
 
         if (intent.resolveActivity(context.getPackageManager()) != null) {
             final Integer requestCode = method.getRequestCode(args);

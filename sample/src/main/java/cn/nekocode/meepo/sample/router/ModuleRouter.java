@@ -2,7 +2,7 @@ package cn.nekocode.meepo.sample.router;
 
 import android.content.Context;
 
-import cn.nekocode.meepo.annotation.TargetClass;
+import cn.nekocode.meepo.annotation.Clazz;
 import cn.nekocode.meepo.sample.custom.TestModule;
 import cn.nekocode.meepo.sample.custom.TestModule2;
 
@@ -11,9 +11,9 @@ import cn.nekocode.meepo.sample.custom.TestModule2;
  */
 public interface ModuleRouter {
 
-    @TargetClass(TestModule.class)
+    @Clazz(TestModule.class)
     void gotoTestModule(Context context);
 
-    @TargetClass(TestModule2.class)
+    @Clazz(TestModule2.class)
     void gotoTestModule2(Context context);
 }

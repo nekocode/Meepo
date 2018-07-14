@@ -29,6 +29,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 @Target(METHOD)
 @Retention(RUNTIME)
-public @interface RequestCode {
+public @interface Flags {
     int value();
 }

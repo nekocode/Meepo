@@ -6,11 +6,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import cn.nekocode.meepo.Meepo;
-import cn.nekocode.meepo.annotation.Bundle;
-import cn.nekocode.meepo.annotation.Query;
-import cn.nekocode.meepo.annotation.TargetClass;
-import cn.nekocode.meepo.annotation.TargetFlags;
-import cn.nekocode.meepo.annotation.TargetPath;
+import cn.nekocode.meepo.annotation.BundleParam;
+import cn.nekocode.meepo.annotation.QueryParam;
+import cn.nekocode.meepo.annotation.Clazz;
+import cn.nekocode.meepo.annotation.Flags;
+import cn.nekocode.meepo.annotation.Path;
 import cn.nekocode.meepo.config.UriConfig;
 import cn.nekocode.meepo.sample.BActivity;
 import cn.nekocode.meepo.sample.BuildConfig;
@@ -27,17 +27,17 @@ public interface ActivityRouter {
     String ARG_NULLABLE = "nullable";
 
 
-    @TargetPath("a")
+    @Path("a")
     boolean gotoA(
             @NonNull Context context,
-            @Query(ARG_TITLE) @NonNull String title,
-            @Query(ARG_NULLABLE) @Nullable String nullable
+            @QueryParam(ARG_TITLE) @NonNull String title,
+            @QueryParam(ARG_NULLABLE) @Nullable String nullable
     );
 
-    @TargetClass(BActivity.class)
-    @TargetFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+    @Clazz(BActivity.class)
+    @Flags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
     void gotoB(
             @NonNull Context context,
-            @Bundle(ARG_TITLE) @NonNull String title
+            @BundleParam(ARG_TITLE) @NonNull String title
     );
 }

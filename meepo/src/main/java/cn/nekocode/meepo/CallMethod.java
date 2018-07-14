@@ -29,11 +29,12 @@ import java.util.Map;
  * @author nekocode (nekocode.cn@gmail.com)
  */
 public class CallMethod {
+    private Class clazz;
+    private String clazzName;
+    private String action;
+    private Integer flags;
+    private Integer requestCode;
     private String mimeType;
-    private Class targetClass;
-    private String targetClassName;
-    private int targetFlags;
-    private String targetAction;
 
     private ArrayList<Object> pathSegements = new ArrayList<>(); // [segementString, position, ...]
     private HashMap<String, Integer> queryPositions = new HashMap<>(); // {key: position, ...}
@@ -43,28 +44,64 @@ public class CallMethod {
 
 
     @Nullable
-    public String getTargetAction() {
-        return targetAction;
+    public Class getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(@Nullable Class clazz) {
+        this.clazz = clazz;
     }
 
     @Nullable
-    public Class getTargetClass() {
-        return targetClass;
+    public String getClazzName() {
+        return clazzName;
+    }
+
+    public void setClazzName(@Nullable String clazzName) {
+        this.clazzName = clazzName;
     }
 
     @Nullable
-    public String getTargetClassName() {
-        return targetClassName;
+    public String getAction() {
+        return action;
     }
 
-    public int getTargetFlags() {
-        return targetFlags;
+    public void setAction(@Nullable String action) {
+        this.action = action;
+    }
+
+    @Nullable
+    public Integer getFlags() {
+        return flags;
+    }
+
+    public void setFlags(int flags) {
+        this.flags = flags;
+    }
+
+    public void setRequestCode(int requestCode) {
+        this.requestCode = requestCode;
+    }
+
+    public void setRequestCodePosition(@Nullable Integer requestCodePosition) {
+        this.requestCodePosition = requestCodePosition;
+    }
+
+    @Nullable
+    public Integer getRequestCode(@NonNull Object[] args) {
+        return requestCodePosition == null ? requestCode : (Integer) args[requestCodePosition];
     }
 
     @Nullable
     public String getMimeType() {
         return mimeType;
     }
+
+    public void setMimeType(@Nullable String mimeType) {
+        this.mimeType = mimeType;
+    }
+
+
 
     @Nullable
     public String getUri(@Nullable String scheme, @Nullable String host, @NonNull Object[] args) {
@@ -78,28 +115,6 @@ public class CallMethod {
             return null;
         }
         return hostUri + path + queryString;
-    }
-
-
-
-    public void setTargetAction(@Nullable String targetAction) {
-        this.targetAction = targetAction;
-    }
-
-    public void setTargetClass(@Nullable Class targetClass) {
-        this.targetClass = targetClass;
-    }
-
-    public void setTargetClassName(@Nullable String targetClassName) {
-        this.targetClassName = targetClassName;
-    }
-
-    public void setTargetFlags(int targetFlags) {
-        this.targetFlags = targetFlags;
-    }
-
-    public void setMimeType(@Nullable String mimeType) {
-        this.mimeType = mimeType;
     }
 
     public void addPathSegement(@NonNull Object pathSegements) {
@@ -192,14 +207,5 @@ public class CallMethod {
         }
 
         return bundle;
-    }
-
-    public void setRequestCodePosition(@Nullable Integer requestCodePosition) {
-        this.requestCodePosition = requestCodePosition;
-    }
-
-    @Nullable
-    public Integer getRequestCode(@NonNull Object[] args) {
-        return requestCodePosition == null ? null : (Integer) args[requestCodePosition];
     }
 }

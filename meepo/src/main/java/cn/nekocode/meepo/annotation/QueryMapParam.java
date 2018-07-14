@@ -29,6 +29,5 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 @Target(PARAMETER)
 @Retention(RUNTIME)
-public @interface Query {
-    String value();
+public @interface QueryMapParam {
 }

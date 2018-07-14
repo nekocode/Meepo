@@ -18,7 +18,7 @@ public class ModuleCallAdapter implements CallAdapter {
     @Override
     public Object call(@NonNull Config config, @NonNull CallMethod method, @NonNull Object[] args) {
         final Context context = MeepoUtils.getContextFromFirstParameter(args);
-        final Class targetClass = method.getTargetClass();
+        final Class targetClass = method.getClazz();
 
         String textPrefix = "";
         if (config instanceof ModuleConfig) {
