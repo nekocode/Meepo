@@ -85,7 +85,7 @@ public class DefaultParser implements Parser {
                     final String segment = segements[i];
 
                     if (i % 2 == 0) {
-                        if (!MeepoUtils.isTextEmpty(segment)) {
+                        if (MeepoUtils.isTextNotEmpty(segment)) {
                             callMethod.addPathSegement(segment);
                         }
                     } else {
@@ -99,7 +99,7 @@ public class DefaultParser implements Parser {
                     }
                 }
 
-                if (!MeepoUtils.isTextEmpty(path.mimeType())) {
+                if (MeepoUtils.isTextNotEmpty(path.mimeType())) {
                     callMethod.setMimeType(path.mimeType());
                 }
 
