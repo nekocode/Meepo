@@ -36,7 +36,7 @@ public class CallMethod {
     private Integer requestCode;
     private String mimeType;
 
-    private ArrayList<Object> pathSegements = new ArrayList<>(); // [segementString, position, ...]
+    private ArrayList<Object> pathSegments = new ArrayList<>(); // [segmentString, position, ...]
     private HashMap<String, Integer> queryPositions = new HashMap<>(); // {key: position, ...}
     private ArrayList<Integer> queryMapPositions = new ArrayList<>(); // [position, position, ...]
     private HashMap<String, Integer> bundlePositions = new HashMap<>();
@@ -117,8 +117,8 @@ public class CallMethod {
         return hostUri + path + queryString;
     }
 
-    public void addPathSegement(@NonNull Object pathSegements) {
-        this.pathSegements.add(pathSegements);
+    public void addPathSegment(@NonNull Object pathSegment) {
+        this.pathSegments.add(pathSegment);
     }
 
     public void addQueryPositions(@NonNull String key, @NonNull Integer queryPosition) {
@@ -137,7 +137,7 @@ public class CallMethod {
     private String getPath(@NonNull Object[] args) {
         final StringBuilder stringBuilder = new StringBuilder();
 
-        for (Object segment : pathSegements) {
+        for (Object segment : pathSegments) {
             if (segment instanceof String) {
                 stringBuilder.append((String) segment);
             } else if (segment instanceof Integer) {

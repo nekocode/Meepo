@@ -79,19 +79,19 @@ public class DefaultParser implements Parser {
 
             } else if (annotation instanceof Path) {
                 final Path path = (Path) annotation;
-                final String segements[] = path.value().split("[{}]");
+                final String segments[] = path.value().split("[{}]");
 
-                for (int i = 0; i < segements.length; i++) {
-                    final String segment = segements[i];
+                for (int i = 0; i < segments.length; i++) {
+                    final String segment = segments[i];
 
                     if (i % 2 == 0) {
                         if (MeepoUtils.isTextNotEmpty(segment)) {
-                            callMethod.addPathSegement(segment);
+                            callMethod.addPathSegment(segment);
                         }
                     } else {
                         final Integer position = positions.get(segment);
                         if (position != null) {
-                            callMethod.addPathSegement(position);
+                            callMethod.addPathSegment(position);
                         } else {
                             throw new RuntimeException(String.format(Locale.getDefault(),
                                     "@Path(\"%s\") not found.", segment));
