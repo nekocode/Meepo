@@ -1,17 +1,19 @@
 # Meepo
-[![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0.html) [![Release](https://jitpack.io/v/nekocode/Meepo.svg)](https://jitpack.io/#nekocode/Meepo)
+[![Build Status](https://travis-ci.com/nekocode/Meepo.svg?branch=master)](https://travis-ci.com/nekocode/Meepo) [![codecov](https://codecov.io/gh/nekocode/Meepo/branch/master/graph/badge.svg)](https://codecov.io/gh/nekocode/Meepo)
 
 Meepo is a router generator for android, similar to **[retrofit](https://github.com/square/retrofit)**. You can use it to create routers for Activities, Fragments and even any things.
 
 
 ### Intergation
 
+Replace the `${lastest-version}` in below code to number [![Release](https://jitpack.io/v/nekocode/Meepo.svg)](https://jitpack.io/#nekocode/Meepo) .
+
 ```gradle
 repositories {
     maven { url "https://jitpack.io" }
 }
 dependencies {
-    compile 'com.github.nekocode:Meepo:{lastest-version}'
+    compile "com.github.nekocode:Meepo:${lastest-version}"
 }
 ```
 
