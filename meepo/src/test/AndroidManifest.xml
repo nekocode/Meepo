@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="cn.nekocode.meepo">
+
+    <application>
+
+        <activity android:name=".AActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".BActivity">
+            <intent-filter>
+                <action android:name="testAction"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <data
+                    android:host="test.com"
+                    android:pathPattern="/testUri/.*/end"
+                    android:scheme="test"
+                    android:mimeType="text/plain"
+                    />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>
